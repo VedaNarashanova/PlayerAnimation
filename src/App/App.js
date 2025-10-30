@@ -7,6 +7,7 @@ import Resize from './Utils/Resize.js'
 import AssetLoader from './Utils/AssetLoader.js'
 import Preloader from './UI/Preloader.js'
 import InputController from './UI/InputController.js'
+import GUI from './UI/GUI.js'
 
 let instance = null
 
@@ -19,22 +20,25 @@ export default class App{
         this.canvas = document.querySelector("canvas.threejs");
         this.scene = new THREE.Scene()
 
-        // Asset Loader
+        
+        this.gui=new GUI()
         this.assetLoader = new AssetLoader()
-
-        // UI
         this.preloader = new Preloader()
         this.inputController = new InputController()
-
-        // World
         this.world = new World()
-
-        // Camera and Renderer
         this.camera = new Camera()
         this.renderer = new Renderer()
-
-        // extra utils
         this.loop = new Loop()
         this.resize = new Resize()
+
+        // this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        // this.renderer.outputEncoding = THREE.sRGBEncoding;
+        // this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        // this.renderer.toneMappingExposure = 1;
+        // this.renderer.physicallyCorrectLights = true;
+
+        // //shadows
+        // this.renderer.shadowMap.enabled = true;
+        // this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     }
 }

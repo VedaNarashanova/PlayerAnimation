@@ -29,9 +29,6 @@ export default class CharacterController {
     this.instantiateController();
   }
 
-  /**
-   * Instantiate the character controller, rigid body, and collider.
-   */
   instantiateController() {
     // Create a kinematic rigid body
     this.rigidBodyType =
@@ -39,7 +36,7 @@ export default class CharacterController {
     this.rigidBody = this.physics.world.createRigidBody(this.rigidBodyType);
 
     // Create a cuboid collider
-    this.colliderType = this.physics.rapier.ColliderDesc.cuboid(1, 2.5, 1);
+    this.colliderType = this.physics.rapier.ColliderDesc.cuboid(.3,1, .3);
     this.collider = this.physics.world.createCollider(
       this.colliderType,
       this.rigidBody
@@ -57,7 +54,7 @@ export default class CharacterController {
     this.characterController =
       this.physics.world.createCharacterController(0.01);
     this.characterController.setApplyImpulsesToDynamicBodies(true);
-    this.characterController.enableAutostep(5, 0.1, false);
+    this.characterController.enableAutostep(3, 0.1, false);
     this.characterController.enableSnapToGround(1);
   }
 
@@ -91,7 +88,7 @@ export default class CharacterController {
     }
 
     // Normalize and scale movement vector and set y component to -1
-    movement.normalize().multiplyScalar(0.3);
+    movement.normalize().multiplyScalar(0.1);
     movement.y = -1;
 
     // Update collider movement and get new position of rigid body

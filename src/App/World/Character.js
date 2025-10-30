@@ -15,21 +15,21 @@ export default class Character {
 
   instantiateCharacter() {
     // create character and add to scene
-    const geometry = new THREE.BoxGeometry(2, 5, 2);
+    const geometry = new THREE.BoxGeometry(.6, 2, .6);
     const material = new THREE.MeshStandardMaterial({
       color: 0x00ff00,
       wireframe: true,
       visible: false,
     });
     this.instance = new THREE.Mesh(geometry, material);
-    this.instance.position.set(0, 4, 0);
+    this.instance.position.set(0, 4, 0);//(-20, 4, 7)
     this.scene.add(this.instance);
 
     // add avatar to character
     const avatar = this.avatar.scene
     avatar.rotation.y = Math.PI
-    avatar.position.y = -2.5
-    avatar.scale.setScalar(3)
+    avatar.position.y = -1
+    avatar.scale.setScalar(1)
     this.instance.add(avatar)
   }
 }
