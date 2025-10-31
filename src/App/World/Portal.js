@@ -37,6 +37,7 @@ export default class Portal {
             this.portalCenter = new THREE.Vector3();
             this.portalMesh.getWorldPosition(this.portalCenter);
         }
+
     }
 
     loop() {
@@ -44,7 +45,8 @@ export default class Portal {
         if (this.character) {
             // Compute current distance to portal center
             const distance = this.character.position.distanceTo(this.portalCenter);
-            console.log("Distance to portal:", distance.toFixed(2));
+            // console.log("Distance to portal:", distance.toFixed(2));
+
 
             const isNear = distance < 2;
             if (isNear) {
@@ -63,3 +65,38 @@ export default class Portal {
         }
     }
 }
+
+
+
+
+// loop() {
+//     this.character = this.app.world.character.instance;
+//     if (this.character && this.portalMesh) {
+//         // Recompute portal center every frame
+//         if (this.portalMesh instanceof THREE.Group) {
+//             const box = new THREE.Box3().setFromObject(this.portalMesh);
+//             this.portalCenter = new THREE.Vector3();
+//             box.getCenter(this.portalCenter);
+//         } else {
+//             this.portalMesh.getWorldPosition(this.portalCenter);
+//         }
+
+//         const distance = this.character.position.distanceTo(this.portalCenter);
+//         console.log("Distance to portal:", distance.toFixed(2));
+
+//         const isNear = distance < 2;
+//         if (isNear) {
+//             if (!this.prevIsNear) {
+//                 this.modalManager.openModal(this.modalInfo.title, this.modalInfo.description);
+//                 this.portalMesh.material = this.portalNearMaterial;
+//             }
+//             this.prevIsNear = true;
+//         } else {
+//             if (this.prevIsNear) {
+//                 this.modalManager.closeModal();
+//                 this.portalMesh.material = this.portalFarMaterial;
+//             }
+//             this.prevIsNear = false;
+//         }
+//     }
+// }

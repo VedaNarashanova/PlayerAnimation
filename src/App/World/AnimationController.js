@@ -15,7 +15,7 @@ export default class AnimationController {
 
     instantiateAnimations(){
         const idle=this.avatar.animations[0]
-                this.mixer=new THREE.AnimationMixer(this.avatar.scene)
+        this.mixer=new THREE.AnimationMixer(this.avatar.scene)
 
         this.animations=new Map()
         this.avatar.animations.forEach((clip) => {
