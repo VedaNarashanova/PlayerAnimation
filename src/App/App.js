@@ -8,6 +8,7 @@ import AssetLoader from './Utils/AssetLoader.js'
 import Preloader from './UI/Preloader.js'
 import InputController from './UI/InputController.js'
 import GUI from './UI/GUI.js'
+import ModalManager from './UI/ModalManager.js'
 
 let instance = null
 
@@ -15,6 +16,9 @@ export default class App{
     constructor() {
         if(instance) return instance
         instance = this
+
+        //accessing the methods from the consol
+        window.ModalManager=new ModalManager()
 
         // threejs elements
         this.canvas = document.querySelector("canvas.threejs");
