@@ -31,7 +31,7 @@ export default class Environment {
     this.scene.add(environmentScene)
 
 
-    // environmentScene.position.set(-20,0,-10)//-10, 5, -7
+    environmentScene.position.set(-10,5,23)//-10, 5, 20
     environmentScene.rotation.set(0, -7, 0)
     // environmentScene.scale.setScalar(1.7)
 
@@ -122,7 +122,8 @@ for(const child of environmentScene.children){
     
       
         this.directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        this.directionalLight.position.set(1, 1, 1);
+        // this.directionalLight.position.set(1, 1, 1);
+        this.directionalLight.position.set(50, 70, 50); 
         this.directionalLight.castShadow = true;
         this.directionalLight.shadow.camera.top = 30
         this.directionalLight.shadow.camera.right = 30

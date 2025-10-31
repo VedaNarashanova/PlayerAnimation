@@ -32,15 +32,28 @@ export default class Camera{
     }
 
     setControls() {
-        this.controls = new OrbitControls(this.instance, this.canvas);
-        this.controls.enableDamping = true;
-        this.controls.enableZoom = true;      // allow zoom
-    this.controls.enablePan = true;       // allow moving camera sideways
-    this.controls.enableRotate = true;    // allow rotating camera
+    //     this.controls = new OrbitControls(this.instance, this.canvas);
+    //     this.controls.enableDamping = true;
+    //     this.controls.enableZoom = true;      // allow zoom
+    //     this.controls.enablePan = true;       // allow moving camera sideways
+    //     this.controls.enableRotate = true;    // allow rotating camera
 
-    // Optional: set min/max zoom
-    this.controls.minDistance = 10;  // closest
-    this.controls.maxDistance = 200; // farthest
+    // // Optional: set min/max zoom
+    // this.controls.minDistance = 10;  // closest
+    // this.controls.maxDistance = 200; // farthest
+    // Create the camera
+        this.instance = new THREE.PerspectiveCamera(
+            50, // Field of view (smaller value = more zoomed in)
+            this.sizes.width / this.sizes.height,
+            0.1,
+            1000
+        )
+
+        // Position the camera — adjust these values to your scene
+        this.instance.position.set(0, 25, 40)
+
+        // Optional: make the camera look at a specific point
+        this.instance.lookAt(0, 0, 0)
 
     }
 
@@ -52,7 +65,7 @@ export default class Camera{
     }
 
     loop() {
-        this.controls.update()
+        // this.controls.update()
 
 
         // this.characterController = this.app.world.characterController?.rigidBody

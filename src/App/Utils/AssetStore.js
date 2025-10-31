@@ -8,7 +8,8 @@ const assetsToLoad = [
   },
     {
     id:'environment',
-    path:'/models/environment10.glb',
+    path:'/models/environment11.glb',
+    // path:'/models/environment10.glb',
 // path:'/models/finalenvironment.glb',
     type: 'model' 
   }
