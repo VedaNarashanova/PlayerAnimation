@@ -38,6 +38,8 @@ export default class Portal {
             this.portalMesh.getWorldPosition(this.portalCenter);
         }
 
+
+
     }
 
     loop() {
@@ -64,39 +66,31 @@ export default class Portal {
             }
         }
     }
+
+
+
+
+
+    setGlow(on) {
+        if (on) {
+            this.portalGlowMaterial = new THREE.MeshStandardMaterial({
+            color: 0x00ffff,           // base color
+            emissive: 0x00ffff,        // glowing color
+            emissiveIntensity: 5,      // how strong the glow is
+            transparent: true,
+            opacity: 0.8,
+        });
+        this.portalMesh.material = this.portalGlowMaterial;
+
+        this.portalLight = new THREE.PointLight(0x00ffff, 7, 20); // color, intensity, distance
+        this.portalLight.position.set(0, 0, 0); // center of portal
+        this.portalMesh.add(this.portalLight);
+        } 
+        else {
+            this.portalGlowMaterial.emissiveIntensity = 0; // normal glow
+            this.portalLight.intensity =0; // normal light
+            this.portalMesh.material=this.portalFarMaterial
+        }
+    }
 }
 
-
-
-
-// loop() {
-//     this.character = this.app.world.character.instance;
-//     if (this.character && this.portalMesh) {
-//         // Recompute portal center every frame
-//         if (this.portalMesh instanceof THREE.Group) {
-//             const box = new THREE.Box3().setFromObject(this.portalMesh);
-//             this.portalCenter = new THREE.Vector3();
-//             box.getCenter(this.portalCenter);
-//         } else {
-//             this.portalMesh.getWorldPosition(this.portalCenter);
-//         }
-
-//         const distance = this.character.position.distanceTo(this.portalCenter);
-//         console.log("Distance to portal:", distance.toFixed(2));
-
-//         const isNear = distance < 2;
-//         if (isNear) {
-//             if (!this.prevIsNear) {
-//                 this.modalManager.openModal(this.modalInfo.title, this.modalInfo.description);
-//                 this.portalMesh.material = this.portalNearMaterial;
-//             }
-//             this.prevIsNear = true;
-//         } else {
-//             if (this.prevIsNear) {
-//                 this.modalManager.closeModal();
-//                 this.portalMesh.material = this.portalFarMaterial;
-//             }
-//             this.prevIsNear = false;
-//         }
-//     }
-// }
