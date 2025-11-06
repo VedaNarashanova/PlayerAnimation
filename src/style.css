@@ -151,3 +151,71 @@ body {
 .modal p {
     font-weight: 300;
 }
+
+
+
+
+/* ________________________ */
+
+.toggle {
+  width: 60px;
+  height: 30px;
+  border: 2px solid #e0a3f2; 
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  backdrop-filter: blur(10px);
+  background: white;
+   transform: rotate(-5deg);      
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* The white glossy ball */
+.toggle-ball {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #ddd);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25), inset 0 1px 3px rgba(255,255,255,0.6);
+  transition: transform 0.3s ease, background 0.3s ease;
+  background: #444;    
+}
+
+/* Active state (night mode on) */
+.toggle.active {
+  border-color: #f5f3ee;
+  background: rgba(255, 221, 180, 0.15);
+}
+
+.toggle.active .toggle-ball {
+  transform: translateX(30px);
+  background: radial-gradient(circle at 30% 30%, #fff7e0, #f2cda3);
+}
+
+
+.toggle:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+canvas.threejs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.ui-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10; 
+}
+
+button, .toggle {
+  z-index: 20; 
+}
+
+

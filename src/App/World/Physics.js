@@ -2,13 +2,9 @@ import * as THREE from "three";
 import App from "../App.js";
 import { appStateStore } from "../Utils/Store.js";
 
-/**
- * Class representing a physics simulation
- */
+
 export default class Physics {
-  /**
-   * Creates an instance of Physics.
-   */
+
   constructor() {
     // getting the app instance
     this.app = new App();
@@ -28,12 +24,7 @@ export default class Physics {
     });
   }
 
-  /**
-   * Adds a mesh to the physics simulation with a given rigid body type and collider type
-   * @param {THREE.Mesh} mesh - The mesh to add to the physics simulation
-   * @param {string} type - The rigid body type ("dynamic" or "fixed")
-   * @param {string} collider - The collider type ("cuboid", "ball", or "trimesh")
-   */
+
   add(mesh, type, collider) {
     // defining the rigid body type
     let rigidBodyType;
@@ -50,7 +41,7 @@ export default class Physics {
     }
     this.rigidBody = this.world.createRigidBody(rigidBodyType);
 
-    // defining the collider type
+  
     let colliderType;
 
     switch (collider) {
@@ -79,7 +70,6 @@ export default class Physics {
         break;
     }
 
-    // setting the rigid body position and rotation
     const worldPosition = mesh.getWorldPosition(new THREE.Vector3());
     const worldRotation = mesh.getWorldQuaternion(new THREE.Quaternion());
     this.rigidBody.setTranslation(worldPosition);
@@ -89,11 +79,7 @@ export default class Physics {
     return this.rigidBody;
   }
 
-  /**
-   * Computes the dimensions of a cuboid collider for a given mesh
-   * @param {THREE.Mesh} mesh - The mesh to compute the dimensions for
-   * @returns {THREE.Vector3} The dimensions of the cuboid collider
-   */
+
   computeCuboidDimensions(mesh) {
     mesh.geometry.computeBoundingBox();
     const size = mesh.geometry.boundingBox.getSize(new THREE.Vector3());
@@ -102,14 +88,8 @@ export default class Physics {
     return size;
   }
 
-  /**
-   * Computes the radius of a
-   /**
 
-Computes the radius of a sphere collider for a given mesh
-@param {THREE.Mesh} mesh - The mesh to compute the radius for
-@returns {number} The radius of the sphere collider
-*/
+
   computeBallDimensions(mesh) {
     mesh.geometry.computeBoundingSphere();
     const radius = mesh.geometry.boundingSphere.radius;
@@ -118,11 +98,7 @@ Computes the radius of a sphere collider for a given mesh
     return radius * maxScale;
   }
 
-  /**
-  Computes the scaled vertices and indices of a trimesh collider for a given mesh
-  @param {THREE.Mesh} mesh - The mesh to compute the scaled vertices and indices for
-  @returns {{scaledVertices: number[], indices: number[]}} The scaled vertices and indices of the trimesh collider
-  */
+
   computeTrimeshDimensions(mesh) {
     const vertices = mesh.geometry.attributes.position.array;
     const indices = mesh.geometry.index.array;

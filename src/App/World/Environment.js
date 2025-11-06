@@ -3,6 +3,7 @@ import App from "../App.js";
 import assetStore from "../Utils/AssetStore.js";
 import Portal from "./Portal.js";
 import ModalContentProvider from "../UI/ModalContentProvider.js";
+import { gsap } from "gsap";
 
 export default class Environment {
   constructor() {
@@ -26,7 +27,16 @@ export default class Environment {
     // this.addMeshes();
 
     this.isNight=false
-     this.createToggleButton()
+    // this.createToggleButton()
+
+
+    // JS
+const toggle = document.getElementById("nightToggle");
+
+toggle.addEventListener("click", () => {
+  toggle.classList.toggle("active");
+  this.toggleNightMode(); // your existing function
+});
     
   }
 
@@ -207,32 +217,18 @@ export default class Environment {
     this.isNight = !this.isNight;
 
     if (this.isNight) {
-      this.ambientLight.intensity = 0;
-      this.directionalLight.intensity = 0;
+      gsap.to(this.ambientLight, { intensity: 0.05, duration: 2 });
+      gsap.to(this.directionalLight, { intensity: 0.1, duration: 2 });
+      // this.ambientLight.intensity = 0;
+      // this.directionalLight.intensity = 0;
 
       this.portal1.setGlow(true);
       this.portal2.setGlow(true);
       this.portal3.setGlow(true);
     } else {
-      this.ambientLight = new THREE.AmbientLight(0xffffff, 1);
-      this.scene.add(this.ambientLight);
-
-      this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
-      this.directionalLight.position.set(50, 70, 50); 
-      this.directionalLight.castShadow = true;
-      this.scene.add(this.directionalLight);
-    
+      gsap.to(this.ambientLight, { intensity: 1, duration: 3 });
+      gsap.to(this.directionalLight, { intensity: 1, duration: 3 });
       
-      this.directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-      this.directionalLight.position.set(50, 70, 50); 
-      this.directionalLight.castShadow = true;
-      this.directionalLight.shadow.camera.top = 30
-      this.directionalLight.shadow.camera.right = 30
-      this.directionalLight.shadow.camera.left = -30
-      this.directionalLight.shadow.camera.bottom = -30
-      this.directionalLight.shadow.bias = -0.002
-      this.directionalLight.shadow.normalBias = 0.072
-      this.scene.add(this.directionalLight);
       this.portal1.setGlow(false);
       this.portal2.setGlow(false);
       this.portal3.setGlow(false);
