@@ -11,7 +11,7 @@ export default class Environment {
     this.scene = this.app.scene;
     this.physics = this.app.world.physics;
 
-    this.pane=this.app.gui.pane
+    // this.pane=this.app.gui.pane
 
     //pull the environment
     this.assetStore=assetStore.getState()
@@ -30,15 +30,22 @@ export default class Environment {
     // this.createToggleButton()
 
 
-    // JS
-const toggle = document.getElementById("nightToggle");
+  // old toggle
+// const toggle = document.getElementById("nightToggle");
 
-toggle.addEventListener("click", () => {
-  toggle.classList.toggle("active");
-  this.toggleNightMode(); // your existing function
-});
+// toggle.addEventListener("click", () => {
+//   toggle.classList.toggle("active");
+//   this.toggleNightMode(); 
+// });
     
-  }
+const lightSwitch = document.getElementById("light-switch");
+if (lightSwitch) {
+  lightSwitch.addEventListener("change", () => {
+    this.toggleNightMode();
+  });
+}
+
+}
 
   loadEnvironment() {
     const environmentScene=this.environment.scene
@@ -121,8 +128,10 @@ toggle.addEventListener("click", () => {
       visible:false
     });
     this.groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
+    this.groundMesh.position.y = 5;
     this.scene.add(this.groundMesh);
     this.physics.add(this.groundMesh, "fixed", "cuboid");
+    
   }
 
   // addLights() {

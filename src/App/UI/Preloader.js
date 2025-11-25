@@ -40,6 +40,14 @@ export default class Preloader {
             console.log('started')
             this.overlay.classList.add('fade')
             this.startButton.classList.add('fadeOut')
+            // Show your switch when the game starts
+            const lightSwitch = document.querySelector('.mySwitch');
+            if (lightSwitch) {
+                // Trigger the fade in on the next frame
+                requestAnimationFrame(() => {
+                    lightSwitch.classList.add('visible');
+                });
+            }
 
             window.setTimeout(() => {
                 this.overlay.remove()

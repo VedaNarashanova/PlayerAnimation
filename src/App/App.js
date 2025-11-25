@@ -25,7 +25,7 @@ export default class App{
         this.scene = new THREE.Scene()
 
         
-        this.gui=new GUI()
+        // this.gui=new GUI()
         this.assetLoader = new AssetLoader()
         this.preloader = new Preloader()
         this.inputController = new InputController()
