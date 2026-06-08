@@ -15,8 +15,9 @@ export default class Environment {
 
     //pull the environment
     this.assetStore=assetStore.getState()
+
     this.environment=this.assetStore.loadedAssets.environment
-    
+
 
     this.loadEnvironment();
     this.addGround();
@@ -35,9 +36,9 @@ export default class Environment {
 
 // toggle.addEventListener("click", () => {
 //   toggle.classList.toggle("active");
-//   this.toggleNightMode(); 
+//   this.toggleNightMode();
 // });
-    
+
 const lightSwitch = document.getElementById("light-switch");
 if (lightSwitch) {
   lightSwitch.addEventListener("change", () => {
@@ -81,7 +82,6 @@ if (lightSwitch) {
 
 
   for(const child of environmentScene.children){
-    // Physics
     const isPhysicalObject = physicalObjects.some(keyword => child.name.includes(keyword));
     if(isPhysicalObject){
       child.traverse((obj) => {
@@ -110,7 +110,7 @@ if (lightSwitch) {
     });
   }
 }
-  
+
 
     // const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     // this.scene.add(ambientLight);
@@ -130,8 +130,9 @@ if (lightSwitch) {
     this.groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
     this.groundMesh.position.y = 5;
     this.scene.add(this.groundMesh);
+
     this.physics.add(this.groundMesh, "fixed", "cuboid");
-    
+
   }
 
   // addLights() {
@@ -149,13 +150,13 @@ if (lightSwitch) {
       this.scene.add(this.ambientLight);
 
       this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
-      this.directionalLight.position.set(50, 70, 50); 
+      this.directionalLight.position.set(50, 70, 50);
       this.directionalLight.castShadow = true;
       this.scene.add(this.directionalLight);
-    
-      
+
+
       this.directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-      this.directionalLight.position.set(50, 70, 50); 
+      this.directionalLight.position.set(50, 70, 50);
       this.directionalLight.castShadow = true;
       this.directionalLight.shadow.camera.top = 30
       this.directionalLight.shadow.camera.right = 30
@@ -164,7 +165,7 @@ if (lightSwitch) {
       this.directionalLight.shadow.bias = -0.002
       this.directionalLight.shadow.normalBias = 0.072
       this.scene.add(this.directionalLight);
-    
+
   }
 
   addPortals(){
@@ -181,7 +182,7 @@ if (lightSwitch) {
 
 
   }
-  
+
    addWalls() {
     const wallMaterial = new THREE.MeshStandardMaterial({
       color: "gray",
@@ -217,7 +218,7 @@ if (lightSwitch) {
     this.portal3.loop()
   }
 
-  
+
 
 
 
@@ -237,7 +238,7 @@ if (lightSwitch) {
     } else {
       gsap.to(this.ambientLight, { intensity: 1, duration: 3 });
       gsap.to(this.directionalLight, { intensity: 1, duration: 3 });
-      
+
       this.portal1.setGlow(false);
       this.portal2.setGlow(false);
       this.portal3.setGlow(false);
@@ -265,7 +266,7 @@ if (lightSwitch) {
     });
   }
 
-  
 
-  
+
+
 }

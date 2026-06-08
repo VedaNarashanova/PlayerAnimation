@@ -11,21 +11,21 @@ export default class Portal {
         this.modalManager = new ModalManager();
 
         this.portalNearMaterial = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
+            color: 0xff7bff,
             transparent: true,
             opacity: 0.8,
         });
 
         this.portalFarMaterial = new THREE.MeshBasicMaterial({
-            color: 0x00ffff,
+            color: 0xff1493,
             transparent: true,
             opacity: 0.8,
         });
 
         // Create a glowing material once
         this.portalGlowMaterial = new THREE.MeshStandardMaterial({
-            color: 0x00ffff,
-            emissive: 0x00ffff,
+            color: 0xff2fd2,
+            emissive: 0xff5fd2,
             emissiveIntensity: 0, // start with no glow
             transparent: true,
             opacity: 0.8,
@@ -46,7 +46,7 @@ export default class Portal {
         }
 
         // Light for glow
-        this.portalLight = new THREE.PointLight(0x00ffff, 0, 20); // start with 0 intensity
+        this.portalLight = new THREE.PointLight(0xff2fd2, 0, 25); // start with 0 intensity
         this.portalMesh.add(this.portalLight);
     }
 
@@ -173,7 +173,7 @@ export default class Portal {
 //         gsap.to(this.portalGlowMaterial,{emissiveIntensity:5,duration:4})
 //         gsap.to(this.portalLight,{intensity:7,duration:3})
 //         this.portalMesh.add(this.portalLight);
-//         } 
+//         }
 //         else {
 //             gsap.to(this.portalGlowMaterial, { emissiveIntensity: 0, duration: 3 });
 //             gsap.to(this.portalLight, { intensity: 0, duration: 3 });
